@@ -1,17 +1,26 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        ArrayList<Game> games = new ArrayList<>();
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+        games.add(new Game("Pac-Man", 30, 10));
+        games.add(new Game("Tetris", 20, 30));
+        games.add(new Game("Duck Hunt", 40, 50));
+        games.add(new Game("Super Mario 64", 60));
+        games.add(new Game("Super Mario Bros", 80, 5));
+
+
+
+        for (int i = 0; i < games.size(); i++){
+            games.get(i).toonGame();
         }
+
+        //for (int i = 0; i < games.size(); i++){
+        //    games.get(i).toonKorting();
+        //}
+
+
     }
 }
