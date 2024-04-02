@@ -1,16 +1,19 @@
+import java.util.ArrayList;
+
 public class Game {
     private String naam;
     private double prijs;
     private int korting;
+    private String genre;
 
-    public Game (String naam, double prijs){
+    public Game (String naam, double prijs, String genre){
         this.naam = naam;
         this.prijs = prijs;
-
+        this.genre = genre;
     }
 
-    public Game (String naam, double prijs, int korting){
-        this(naam, prijs);
+    public Game (String naam, double prijs, String genre, int korting){
+        this(naam, prijs, genre);
         this.korting = korting;
     }
 
@@ -32,6 +35,7 @@ public class Game {
     public void setPrijs(double prijs) {
         this.prijs = prijs;
     }
+
 }
 
 
