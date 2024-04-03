@@ -7,26 +7,59 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         ArrayList<Game> games = new ArrayList<>();
-        games.add(new Game("Pac-Man", 30, "Open world", 10));
-        games.add(new Game("Tetris", 20, "Puzzle", 30));
-        games.add(new Game("Duck Hunt", 40, "FPS", 50));
-        games.add(new Game("Super Mario 64", 60, "Family"));
-        games.add(new Game("Super Mario Bros", 80, "Platformer", 5));
+
+        Genre genre1 = new Genre("Open world");
+        Genre genre2 = new Genre("Puzzle");
+        Genre genre3 = new Genre("FPS");
+        Genre genre4 = new Genre("Family");
+        Genre genre5 = new Genre("Platformer");
+
+
+        games.add(new Game("Pac-Man", 30, genre1, 10));
+        games.add(new Game("Tetris", 20, genre2, 30));
+        games.add(new Game("Duck Hunt", 40, genre3, 50));
+        games.add(new Game("Super Mario 64", 60, genre4));
+        games.add(new Game("Super Mario Bros", 80, genre5));
 
         printMenu();
 
         boolean exit = false;
         while (!exit) {
             String optie = scanner.nextLine();
+            System.out.println();
 
             switch(optie) {
                 case "1":
+                    System.out.println("PRIJZENLIJST\n");
                     for (int i = 0; i < games.size(); i++){
                         games.get(i).toonGame();
+                        System.out.println();
                     }
+
+                    System.out.println();
+                    System.out.println("Druk op enter om terug naar het menu te gaan.");
+                    scanner.nextLine();
+                    clearConsole();
+                    printMenu();
+
                     break;
                 case "2":
-                    // code block
+                    System.out.println("RANGLIJST\n");
+
+                    ArrayList<Genre> genres = new ArrayList<>();
+                    for (int i = 0; i < games.size() ; i++) {
+
+                        Genre genre = games.get(i).getGenre().getGenre();
+
+                        if (!genres.contains(genre)) {
+                            genres.add(genre);
+                            genre.toonGenre();
+                        }
+
+                    }
+
+                    System.out.println();
+
                     break;
                 case "3":
                     // code block
@@ -66,7 +99,7 @@ public class Main {
         System.out.println("{|                                               |}");
         System.out.println("{|                      MENU                     |}");
         System.out.println("{|                                               |}");
-        System.out.println("{|     1. GAMES     2. GENRES    3. UITVERKOOP   |}");
+        System.out.println("{|  1. PRIJZENLIJST  2. RANGLIJST  3. UITVERKOOP |}");
         System.out.println("{|                                               |}");
         System.out.println("{|           4. ENQUETES      5. EXIT            |}");
         System.out.println("{|                                               |}");
