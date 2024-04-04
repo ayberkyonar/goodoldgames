@@ -1,3 +1,5 @@
+import com.sun.security.jgss.GSSUtil;
+
 import java.util.ArrayList;
 
 public class Game {
@@ -31,7 +33,7 @@ public class Game {
         if (this.korting > 0) {
             System.out.println(this.naam);
             System.out.printf("€%.2f\n",this.prijs);
-            System.out.println("%" + this.korting);
+            System.out.println(this.korting + "%");
             double kortingBedrag = this.prijs * (this.korting / 100.0);
             System.out.printf("Prijs na korting: €%.2f\n", this.prijs - kortingBedrag);
         }
@@ -51,6 +53,7 @@ public class Game {
         for (int i = 0; i < reviews.size(); i++) {
             score += reviews.get(i).getGemiddelde();
         }
+
         return score / reviews.size();
 
     }

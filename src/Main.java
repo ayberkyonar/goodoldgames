@@ -16,9 +16,17 @@ public class Main {
 
 
         games.add(new Game("Pac-Man", 30, genre1, 10));
+        games.add(new Game("Pac-Man2", 40, genre1, 5));
+        games.add(new Game("Pac-Man3", 50, genre1, 25));
+
         games.add(new Game("Tetris", 20, genre2, 30));
+        games.add(new Game("Tetris2", 20, genre2, 30));
+
         games.add(new Game("Duck Hunt", 40, genre3, 50));
+        games.add(new Game("Duck Hunt2", 40, genre3, 50));
+
         games.add(new Game("Super Mario 64", 60, genre4));
+
         games.add(new Game("Super Mario Bros", 80, genre5));
 
         printMenu();
@@ -36,7 +44,6 @@ public class Main {
                         System.out.println();
                     }
 
-                    System.out.println();
                     System.out.println("Druk op enter om terug naar het menu te gaan.");
                     scanner.nextLine();
                     clearConsole();
@@ -45,38 +52,57 @@ public class Main {
                     break;
                 case "2":
                     System.out.println("RANGLIJST\n");
-                    int x = 0;
 
                     ArrayList<Genre> genres = new ArrayList<>();
-                    for (int i = 0; i < games.size(); i++) {
+                    int genreCounter = 1;
 
-                        Genre genre = games.get(i).getGenre();
+                    for (Game game : games) {
+                        Genre genre = game.getGenre();
                         if (!genres.contains(genre)) {
                             genres.add(genre);
-                            System.out.print(i + " ");
+                            System.out.print(genreCounter + " ");
                             genre.toonGenre();
+                            genreCounter++;
                         }
-
                     }
-                    System.out.println("Kies een genre");
-                    int keuze = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.println();
 
                     ArrayList<Game> genreGames = new ArrayList<>();
+                    int gameCounter = 1;
+                    boolean genreInput = false;
+                    while (!genreInput){
 
-                    if (genres.get(keuze) != null) {
+                        System.out.println();
+                        System.out.println("Kies een genre:");
+                        int keuze = scanner.nextInt() - 1;
+                        scanner.nextLine();
+                        System.out.println();
 
-                        for (Game game : games) {
-                            if (game.getGenre().equals(genres.get(keuze))) {
-                                genreGames.add(game);
-                                game.toonGame();
-                                System.out.println(game.getScore());
+                        try {
+                            if (genres.get(keuze) != null) {
+
+                                for (Game game : games) {
+                                    if (game.getGenre().equals(genres.get(keuze))) {
+                                        System.out.print(gameCounter + " ");
+                                        game.toonGame();
+                                        genreGames.add(game);
+                                        System.out.println(game.getScore());
+                                        System.out.println();
+                                        genreInput = true;
+
+                                        gameCounter++;
+                                    }
+                                }
+
+                                System.out.println("Kies een game om te reviewen:");
+                                int reviewGame = scanner.nextInt() - 1;
+                                scanner.nextLine();
+
                             }
+                        } catch (Exception e) {
+                            System.out.println("Dit is niet een juiste optie.");
                         }
                     }
 
-                    System.out.println();
                     System.out.println("Druk op enter om terug naar het menu te gaan.");
                     scanner.nextLine();
                     clearConsole();
@@ -99,7 +125,7 @@ public class Main {
                     exit = true;
                     break;
                 default:
-                    System.out.println("Voer een geldig nummer in! (1-5)");
+                    System.out.println("Voer een geldig nummer in! (1-5):");
             }
         }
 
