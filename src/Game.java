@@ -28,12 +28,14 @@ public class Game {
     }
 
     public void toonKorting() {
-        System.out.println(this.naam);
-        System.out.println(this.prijs);
-
-        if (this.korting != -1) {
-            System.out.println(this.korting);
+        if (this.korting > 0) {
+            System.out.println(this.naam);
+            System.out.printf("€%.2f\n",this.prijs);
+            System.out.println("%" + this.korting);
+            double kortingBedrag = this.prijs * (this.korting / 100.0);
+            System.out.printf("Prijs na korting: €%.2f\n", this.prijs - kortingBedrag);
         }
+
     }
 
     public void setPrijs(double prijs) {
@@ -45,7 +47,6 @@ public class Game {
     }
 
     public double getScore () {
-
         double score = 0;
         for (int i = 0; i < reviews.size(); i++) {
             score += reviews.get(i).getGemiddelde();
@@ -55,5 +56,3 @@ public class Game {
     }
 
 }
-
-

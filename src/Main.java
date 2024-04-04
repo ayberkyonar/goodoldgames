@@ -45,24 +45,52 @@ public class Main {
                     break;
                 case "2":
                     System.out.println("RANGLIJST\n");
+                    int x = 0;
 
                     ArrayList<Genre> genres = new ArrayList<>();
-                    for (int i = 0; i < games.size() ; i++) {
+                    for (int i = 0; i < games.size(); i++) {
 
-                        Genre genre = games.get(i).getGenre().getGenre();
-
+                        Genre genre = games.get(i).getGenre();
                         if (!genres.contains(genre)) {
                             genres.add(genre);
+                            System.out.print(i + " ");
                             genre.toonGenre();
                         }
 
                     }
+                    System.out.println("Kies een genre");
+                    int keuze = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println();
+
+                    ArrayList<Game> genreGames = new ArrayList<>();
+
+                    if (genres.get(keuze) != null) {
+
+                        for (Game game : games) {
+                            if (game.getGenre().equals(genres.get(keuze))) {
+                                genreGames.add(game);
+                                game.toonGame();
+                                System.out.println(game.getScore());
+                            }
+                        }
+                    }
 
                     System.out.println();
+                    System.out.println("Druk op enter om terug naar het menu te gaan.");
+                    scanner.nextLine();
+                    clearConsole();
+                    printMenu();
 
                     break;
                 case "3":
-                    // code block
+                    System.out.println("UITVERKOOP\n");
+                    for (int i = 0; i < games.size(); i++){
+                        games.get(i).toonKorting();
+
+                        System.out.println();
+                    }
+
                     break;
                 case "4":
                     // code block
@@ -79,7 +107,7 @@ public class Main {
     }
 
     public static void clearConsole() {
-        for (int i = 0; i < 50; ++i) {
+        for (int i = 0; i < 100; ++i) {
             System.out.println();
         }
     }
