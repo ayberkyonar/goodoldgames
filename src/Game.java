@@ -9,6 +9,14 @@ public class Game {
     private Genre genre;
     private ArrayList<Review> reviews = new ArrayList<>();
 
+    public String getNaam() {
+        return this.naam;
+    }
+
+    public void setNaam (String naam) {
+        this.naam = naam;
+    }
+
     public Game (String naam, double prijs, Genre genre){
         this.naam = naam;
         this.prijs = prijs;
@@ -29,6 +37,7 @@ public class Game {
         System.out.printf("€%.2f\n",this.prijs);
     }
 
+
     public void toonKorting() {
         if (this.korting > 0) {
             System.out.println(this.naam);
@@ -44,8 +53,16 @@ public class Game {
         this.prijs = prijs;
     }
 
+    public double getPrijs() {
+        return this.prijs;
+    }
+
     public void addReview (Review review) {
         reviews.add(review);
+    }
+
+    public ArrayList<Review> getReview() {
+        return this.reviews;
     }
 
     public double getScore () {
