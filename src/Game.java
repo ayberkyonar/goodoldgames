@@ -1,5 +1,7 @@
 import com.sun.security.jgss.GSSUtil;
-
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.ArrayList;
 
 public class Game {
@@ -34,7 +36,13 @@ public class Game {
 
     public void toonGame() {
         System.out.println(this.naam);
-        System.out.printf("€%.2f\n",this.prijs);
+
+        if (this.korting > 0) {
+            double kortingBedrag = this.prijs * (this.korting / 100.0);
+            System.out.printf("€%.2f\n", this.prijs - kortingBedrag);
+        } else {
+            System.out.printf("€%.2f\n",this.prijs);
+        }
     }
 
 
@@ -45,6 +53,7 @@ public class Game {
             System.out.println(this.korting + "%");
             double kortingBedrag = this.prijs * (this.korting / 100.0);
             System.out.printf("Prijs na korting: €%.2f\n", this.prijs - kortingBedrag);
+            System.out.println();
         }
 
     }
@@ -74,5 +83,5 @@ public class Game {
         return score / reviews.size();
 
     }
-
+    
 }

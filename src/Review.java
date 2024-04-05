@@ -23,6 +23,7 @@ public class Review {
         System.out.println("Score graphics: " + this.graphics);
         System.out.println("Score storyline: " + this.storyline);
         System.out.println("Toelichting: " + this.toelichting);
+        System.out.println();
     }
 
 }
