@@ -80,16 +80,19 @@ public class Main {
 
                                 for (Game game : games) {
                                     if (game.getGenre().equals(genres.get(keuze))) {
-                                        System.out.print(gameCounter + " ");
-                                        game.toonGame();
                                         genreGames.add(game);
-                                        System.out.printf("%.1f\n", game.getScore());
-                                        System.out.println();
-                                        genreInput = true;
-
-                                        gameCounter++;
                                     }
                                 }
+                                Game.sortGamesByAverageScore(genreGames);
+                                for (Game game : genreGames) {
+                                    System.out.print(gameCounter + " ");
+                                    game.toonGame();
+                                    System.out.printf("%.2f\n", game.getScore());
+                                    System.out.println();
+                                    gameCounter++;
+                                }
+
+                                genreInput = true;
                             }
                         } catch (InputMismatchException e) {
                             System.out.println("Ongeldige invoer. Voer een geldig getal in.");

@@ -74,14 +74,27 @@ public class Game {
         return this.reviews;
     }
 
-    public double getScore () {
-        double score = 0;
-        for (int i = 0; i < reviews.size(); i++) {
-            score += reviews.get(i).getGemiddelde();
+
+    public double getScore() {
+        if (reviews.isEmpty()) {
+            return 0;
         }
 
+        double score = 0;
+        for (Review review : reviews) {
+            score += review.getGemiddelde();
+        }
         return score / reviews.size();
-
     }
-    
+
+
+    public static void sortGamesByAverageScore(List<Game> games) {
+        Collections.sort(games, Comparator.comparing(Game::getScore).reversed());
+    }
+    public static void printGameScores(List<Game> games) {
+        sortGamesByAverageScore(games); // Sorteer de games op basis van hun gemiddelde score
+        for (Game game : games) {
+            System.out.println(game.getNaam() + ": " + game.getScore());
+        }
+    }
 }

@@ -14,7 +14,11 @@ public class Review {
     }
 
     public double getGemiddelde() {
-        return (double) (this.gameplay + this.graphics + this.storyline) / 3;
+        if (this.gameplay == 0 && this.graphics == 0 && this.storyline == 0) {
+            return 0.0;
+        } else {
+            return (double) (this.gameplay + this.graphics + this.storyline) / 3;
+        }
     }
 
     public void toonReview() {
