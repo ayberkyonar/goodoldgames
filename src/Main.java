@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
@@ -55,9 +52,9 @@ public class Main {
                 case "2":
                     System.out.println("RANGLIJST\n");
 
+                    // Get all genres into array
                     ArrayList<Genre> genres = new ArrayList<>();
                     int genreCounter = 1;
-
                     for (Game game : games) {
                         Genre genre = game.getGenre();
                         if (!genres.contains(genre)) {
@@ -75,11 +72,10 @@ public class Main {
 
                         System.out.println();
                         System.out.println("Kies een genre:");
-                        int keuze = scanner.nextInt() - 1;
-                        scanner.nextLine();
-                        System.out.println();
-
                         try {
+                            int keuze = scanner.nextInt() - 1;
+                            scanner.nextLine();
+                            System.out.println();
                             if (genres.get(keuze) != null) {
 
                                 for (Game game : games) {
@@ -87,7 +83,7 @@ public class Main {
                                         System.out.print(gameCounter + " ");
                                         game.toonGame();
                                         genreGames.add(game);
-                                        System.out.printf("%.2f", game.getScore());
+                                        System.out.printf("%.2f\n", game.getScore());
                                         System.out.println();
                                         genreInput = true;
 
@@ -95,72 +91,115 @@ public class Main {
                                     }
                                 }
                             }
+                        } catch (InputMismatchException e) {
+                            System.out.println("Ongeldige invoer. Voer een geldig getal in.");
+                            scanner.nextLine();
                         } catch (Exception e) {
                             System.out.println("Dit is niet een juiste optie.");
                         }
+                    }
 
-                        System.out.println("Kies een retro game:");
-                        int retroGame = scanner.nextInt() - 1;
-                        scanner.nextLine();
+                    boolean retroGameInput = false;
 
-                        for (Game game : games) {
-                            if (game.equals(games.get(retroGame))) {
-                                game.toonGame();
-                                System.out.println(game.getScore());
-                                System.out.println();
-                                System.out.println("1 Bekijk de reviews van deze retro game.");
-                                System.out.println("2 Geef een review achter.");
-                                System.out.println("3 Verander de prijs.");
-                                System.out.println("4 Ga terug naar het menu.");
-                                System.out.println("Kies uit de bovenstaande opties (1-4):");
+                    while (!retroGameInput) {
+                        try {
+                            System.out.println("Kies een retro game:");
+                            int retroGame = scanner.nextInt() - 1;
+                            scanner.nextLine();
 
-                                boolean exitGame = false;
-                                while (!exitGame) {
-                                    String optieGame = scanner.nextLine();
+                            for (Game game : games) {
+                                if (game.equals(genreGames.get(retroGame))) {
+                                    game.toonGame();
+                                    System.out.println(game.getScore());
                                     System.out.println();
+                                    System.out.println("1 Bekijk de reviews van deze retro game.");
+                                    System.out.println("2 Geef een review achter.");
+                                    System.out.println("3 Verander de prijs.");
+                                    System.out.println("4 Ga terug naar het menu.");
+                                    System.out.println("Kies uit de bovenstaande opties (1-4):");
 
-                                    switch (optieGame) {
-                                        case "1":
-                                            for (Review review : games.get(retroGame).getReview()) {
-                                                review.toonReview();
-                                            }
+                                    boolean exitGame = false;
+                                    while (!exitGame) {
+                                        String optieGame = scanner.nextLine();
+                                        System.out.println();
 
-                                            break;
-                                        case "2":
-                                            System.out.print("Score gameplay: ");
-                                            int gameplay = scanner.nextInt();
-                                            System.out.print("Score graphics: ");
-                                            int graphics = scanner.nextInt();
-                                            System.out.print("Score storyline: ");
-                                            int storyline = scanner.nextInt();
-                                            scanner.nextLine();
-                                            System.out.print("Toelichting: ");
-                                            String toelichting = scanner.nextLine();
+                                        switch (optieGame) {
+                                            case "1":
+                                                if (genreGames.get(retroGame).getReview().isEmpty()) {
+                                                    System.out.println("Er zijn geen reviews voor deze game.");
+                                                    System.out.println("2 Geef een review achter.");
+                                                    System.out.println("3 Verander de prijs.");
+                                                    System.out.println("4 Ga terug naar het menu.");
+                                                    System.out.println("Kies uit de bovenstaande opties (2-4):");
+                                                } else {
+                                                    for (Review review : genreGames.get(retroGame).getReview()) {
+                                                        review.toonReview();
+                                                    }
+                                                    System.out.println();
+                                                    System.out.println("1 Bekijk de reviews van deze retro game.");
+                                                    System.out.println("2 Geef een review achter.");
+                                                    System.out.println("3 Verander de prijs.");
+                                                    System.out.println("4 Ga terug naar het menu.");
+                                                    System.out.println("Kies uit de bovenstaande opties (1-4):");
+                                                }
+                                                break;
+                                            case "2":
+                                                System.out.print("Score gameplay: ");
+                                                int gameplay = scanner.nextInt();
+                                                System.out.print("Score graphics: ");
+                                                int graphics = scanner.nextInt();
+                                                System.out.print("Score storyline: ");
+                                                int storyline = scanner.nextInt();
+                                                scanner.nextLine();
+                                                System.out.print("Toelichting: ");
+                                                String toelichting = scanner.nextLine();
 
-                                            Review newReview = new Review(games.get(retroGame), toelichting, gameplay, graphics, storyline);
-                                            games.get(retroGame).addReview(newReview);
-                                            break;
-                                        case "3":
-                                            System.out.println("Huidige prijs: " + game.getPrijs());
+                                                Review newReview = new Review(genreGames.get(retroGame), toelichting, gameplay, graphics, storyline);
+                                                genreGames.get(retroGame).addReview(newReview);
 
-                                            System.out.print("Voer de nieuwe prijs in: ");
-                                            double nieuwePrijs = scanner.nextDouble();
-                                            game.setPrijs(nieuwePrijs);
+                                                System.out.println();
+                                                System.out.println("Review succesvol toegevoegd.");
+                                                System.out.println();
+                                                System.out.println("1 Bekijk de reviews van deze retro game.");
+                                                System.out.println("2 Geef een review achter.");
+                                                System.out.println("3 Verander de prijs.");
+                                                System.out.println("4 Ga terug naar het menu.");
+                                                System.out.println("Kies uit de bovenstaande opties (1-4):");
 
-                                            System.out.println("Nieuwe prijs: " + game.getPrijs());
-                                            break;
-                                        case "4":
-                                            exitGame = true;
-                                            break;
-                                        default:
-                                            System.out.println("Voer een geldige getal in (1-4):");
+                                                break;
+                                            case "3":
+                                                boolean prijsInvoer = false;
+                                                while (!prijsInvoer) {
+                                                    System.out.println("Huidige prijs: " + game.getPrijs());
 
+                                                    System.out.print("Voer de nieuwe prijs in: ");
+                                                    double nieuwePrijs = scanner.nextDouble();
+                                                    game.setPrijs(nieuwePrijs);
+
+                                                    System.out.println("Nieuwe prijs: " + game.getPrijs());
+                                                    prijsInvoer = true;
+                                                    exitGame = true;
+                                                    retroGameInput = true;
+                                                }
+
+                                                break;
+                                            case "4":
+                                                exitGame = true;
+                                                retroGameInput = true;
+                                                break;
+                                            default:
+                                                System.out.println("Voer een geldige getal in (1-4):");
+                                                break;
+                                        }
                                     }
-
-                                    genreInput = true;
-
                                 }
                             }
+                        }
+                        catch(InputMismatchException e){
+                            System.out.println("Ongeldige invoer. Voer een geldig getal in.");
+                            scanner.nextLine();
+                        } catch(Exception e){
+                            System.out.println("Dit is niet een juiste optie.");
                         }
                     }
                     System.out.println("Druk op enter om terug naar het menu te gaan.");

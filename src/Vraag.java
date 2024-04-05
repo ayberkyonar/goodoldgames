@@ -5,9 +5,7 @@ public abstract class Vraag {
     Scanner scanner = new Scanner(System.in);
 
     private String titel;
-    private ArrayList<Antwoord> antwoorden = new ArrayList<Antwoord>();
-
-    abstract public void toonVraag ();
+    private ArrayList<Antwoord> antwoorden = new ArrayList<>();
 
     Vraag (String titel) {
         this.titel = titel;
@@ -25,6 +23,7 @@ public abstract class Vraag {
         return titel;
     }
 
+    abstract public void toonVraag ();
 }
 
 class OpenVraag extends Vraag{
@@ -46,6 +45,7 @@ class MeerkeuzeVraag extends Vraag {
     private String keuze1;
     private String keuze2;
     private String keuze3;
+    ArrayList<Vraag> bonusVragen = new ArrayList<>();
 
 
     MeerkeuzeVraag (String titel, String keuze1, String keuze2, String keuze3) {
@@ -77,7 +77,8 @@ class BonusVraag extends Vraag {
 
     @Override
     public void toonVraag() {
-
+        System.out.println(this.getTitel());
+        String input = scanner.nextLine();
+        createAntwoord(input);
     }
-
 }
