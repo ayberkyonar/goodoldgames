@@ -22,7 +22,7 @@ public abstract class Vraag {
     abstract public void toonVraag ();
 }
 
-class OpenVraag extends Vraag{
+class OpenVraag extends Vraag {
 
     OpenVraag (String titel) {
         super(titel);
@@ -65,30 +65,33 @@ class MeerkeuzeVraag extends Vraag {
 
             if (input.equals("1")) {
                 createAntwoord(this.keuze1);
+                if (bonusVragen.get(0) != null) {
+                    bonusVragen.get(0).toonVraag();
+                }
                 exitEnquete = true;
             } else if (input.equals("2")) {
                 createAntwoord(this.keuze2);
+                if (bonusVragen.get(1) != null) {
+                    bonusVragen.get(1).toonVraag();
+                }
                 exitEnquete = true;
             } else if (input.equals("3")) {
                 createAntwoord(this.keuze3);
+                if (bonusVragen.get(2) != null) {
+                    bonusVragen.get(2).toonVraag();
+                }
                 exitEnquete = true;
             } else {
                 System.out.println("Vul een geldig getal in!");
             }
         }
     }
-}
 
-class BonusVraag extends Vraag {
+    public void createBonusVraag (int index) {
+        System.out.println("Voer de vervolg vraag in:");
+        String vraag = scanner.nextLine();
+        OpenVraag openVraag = new OpenVraag(vraag);
 
-    BonusVraag (String titel) {
-        super(titel);
-    }
-
-    @Override
-    public void toonVraag() {
-        System.out.println(this.getTitel());
-        String input = scanner.nextLine();
-        createAntwoord(input);
+        this.bonusVragen.add(index, openVraag);
     }
 }

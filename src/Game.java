@@ -92,7 +92,7 @@ public class Game {
         Collections.sort(games, Comparator.comparing(Game::getScore).reversed());
     }
     public static void printGameScores(List<Game> games) {
-        sortGamesByAverageScore(games); // Sorteer de games op basis van hun gemiddelde score
+        sortGamesByAverageScore(games);
         for (Game game : games) {
             System.out.println(game.getNaam() + ": " + game.getScore());
         }

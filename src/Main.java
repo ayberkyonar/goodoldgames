@@ -168,11 +168,11 @@ public class Main {
                                                         genreGames.get(retroGame).addReview(newReview);
 
                                                         System.out.println("Review succesvol toegevoegd.");
-                                                        System.out.println("Wil je een enquete invullen? (J-N):");
+                                                        System.out.println("Wil je een enquete invullen? (J/N):");
                                                         String enqueteInvullen = scanner.nextLine();
                                                         if (enqueteInvullen.toUpperCase().equals("J")) {
                                                             enquetes.get(0).toonVragen();
-
+                                                            printGameOpties();
                                                         } else if(enqueteInvullen.toUpperCase().equals("N")) {
                                                             printGameOpties();
                                                         }
@@ -187,7 +187,6 @@ public class Main {
                                                     }
 
                                                 }
-
                                                 break;
                                             case "3":
                                                 boolean prijsInvoer = false;
@@ -255,7 +254,7 @@ public class Main {
 
                     boolean exitEnquete = false;
                     while (!exitEnquete){
-                        System.out.println("Wil je nog een nieuwe vraag aanmaken? (J-N)");
+                        System.out.println("Wil je nog een nieuwe vraag aanmaken? (J/N)");
                         String maakVraag = scanner.nextLine();
 
                         if (maakVraag.toUpperCase().equals("J")) {
@@ -269,8 +268,6 @@ public class Main {
                     enquetes.add(enquete);
                     clearConsole();
                     printMenu();
-
-                    enquetes.get(0).toonVragen();
                     break;
                 case "5":
                     exit = true;

@@ -15,10 +15,12 @@ public class Enquete {
         System.out.println("Wat voor type vraag wil jij toevoegen?\n");
         System.out.println("1. Meerkeuze Vraag");
         System.out.println("2. Open Vraag");
-        String input = scanner.nextLine();
 
         boolean validInput = false;
         while (!validInput) {
+
+            String input = scanner.nextLine();
+
             if (input.equals("1")) {
                 System.out.println("Geef de vraag een titel:");
                 String titel = scanner.nextLine();
@@ -30,6 +32,48 @@ public class Enquete {
                 String keuze3 = scanner.nextLine();
 
                 MeerkeuzeVraag meerkeuzeVraag = new MeerkeuzeVraag(titel, keuze1, keuze2, keuze3);
+
+                System.out.println("Wilt u een vervolgvraag toevoegen voor optie 1? (J/N)");
+                boolean vervolgInput1 = false;
+                while (!vervolgInput1) {
+                    String vervolgVraagKeuze = scanner.nextLine();
+                    if(vervolgVraagKeuze.toLowerCase().equals("j")){
+                        meerkeuzeVraag.createBonusVraag(0);
+                        vervolgInput1 = true;
+                    } else if (vervolgVraagKeuze.toLowerCase().equals("n")) {
+                        vervolgInput1 = true;
+                    } else {
+                        System.out.println("Voer een geldig invoer in");
+                    }
+                }
+
+                System.out.println("Wilt u een vervolgvraag toevoegen voor optie 2? (J/N)");
+                boolean vervolgInput2 = false;
+                while (!vervolgInput2) {
+                    String vervolgVraagKeuze = scanner.nextLine();
+                    if(vervolgVraagKeuze.toLowerCase().equals("j")){
+                        meerkeuzeVraag.createBonusVraag(1);
+                        vervolgInput2 = true;
+                    } else if (vervolgVraagKeuze.toLowerCase().equals("n")) {
+                        vervolgInput2 = true;
+                    } else {
+                        System.out.println("Voer een geldig invoer in");
+                    }
+                }
+
+                System.out.println("Wilt u een vervolgvraag toevoegen voor optie 3? (J/N)");
+                boolean vervolgInput3 = false;
+                while (!vervolgInput3) {
+                    String vervolgVraagKeuze = scanner.nextLine();
+                    if(vervolgVraagKeuze.toLowerCase().equals("j")){
+                        meerkeuzeVraag.createBonusVraag(2);
+                        vervolgInput3 = true;
+                    } else if (vervolgVraagKeuze.toLowerCase().equals("n")) {
+                        vervolgInput3 = true;
+                    } else {
+                        System.out.println("Voer een geldig invoer in");
+                    }
+                }
 
                 this.addVraag(meerkeuzeVraag);
 
@@ -43,6 +87,8 @@ public class Enquete {
                 this.addVraag(openVraag);
 
                 validInput = true;
+            } else {
+                System.out.println("Voer een geldig invoer in (1/2)");
             }
         }
     }
