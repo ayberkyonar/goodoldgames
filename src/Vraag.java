@@ -15,10 +15,6 @@ public abstract class Vraag {
         this.antwoorden.add(new Antwoord(antwoord));
     }
 
-    public void addAntwoord (Antwoord antwoord) {
-        this.antwoorden.add(antwoord);
-    }
-
     public String getTitel() {
         return titel;
     }
@@ -59,13 +55,27 @@ class MeerkeuzeVraag extends Vraag {
     public void toonVraag() {
         System.out.println(this.getTitel());
         System.out.println("Kies uit:");
-        System.out.println(this.keuze1);
-        System.out.println(this.keuze2);
-        System.out.println(this.keuze3);
+        System.out.println("1 " + this.keuze1);
+        System.out.println("2 " + this.keuze2);
+        System.out.println("3 " + this.keuze3);
 
-        System.out.println(this.getTitel());
-        String input = scanner.nextLine();
-        createAntwoord(input);
+        boolean exitEnquete = false;
+        while (!exitEnquete){
+            String input = scanner.nextLine();
+
+            if (input.equals("1")) {
+                createAntwoord(this.keuze1);
+                exitEnquete = true;
+            } else if (input.equals("2")) {
+                createAntwoord(this.keuze2);
+                exitEnquete = true;
+            } else if (input.equals("3")) {
+                createAntwoord(this.keuze3);
+                exitEnquete = true;
+            } else {
+                System.out.println("Vul een geldig getal in!");
+            }
+        }
     }
 }
 

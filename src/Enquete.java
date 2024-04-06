@@ -22,11 +22,11 @@ public class Enquete {
             if (input.equals("1")) {
                 System.out.println("Geef de vraag een titel:");
                 String titel = scanner.nextLine();
-                System.out.println("Beschrijf de eerste keuze voor de vraag:");
+                System.out.println("Geef de eerste optie voor de vraag:");
                 String keuze1 = scanner.nextLine();
-                System.out.println("Beschrijf de tweede keuze voor de vraag:");
+                System.out.println("Geef de tweede optie voor de vraag:");
                 String keuze2 = scanner.nextLine();
-                System.out.println("Beschrijf de derde keuze voor de vraag:");
+                System.out.println("Geef de derde optie voor de vraag:");
                 String keuze3 = scanner.nextLine();
 
                 MeerkeuzeVraag meerkeuzeVraag = new MeerkeuzeVraag(titel, keuze1, keuze2, keuze3);

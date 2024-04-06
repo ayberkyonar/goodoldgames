@@ -6,6 +6,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         ArrayList<Game> games = new ArrayList<>();
+        ArrayList<Enquete> enquetes = new ArrayList<>();
 
         Genre genre1 = new Genre("Open world");
         Genre genre2 = new Genre("Puzzle");
@@ -51,8 +52,6 @@ public class Main {
                     break;
                 case "2":
                     System.out.println("RANGLIJST\n");
-
-                    // Get all genres into array
                     ArrayList<Genre> genres = new ArrayList<>();
                     int genreCounter = 1;
                     for (Game game : games) {
@@ -169,7 +168,15 @@ public class Main {
                                                         genreGames.get(retroGame).addReview(newReview);
 
                                                         System.out.println("Review succesvol toegevoegd.");
-                                                        printGameOpties();
+                                                        System.out.println("Wil je een enquete invullen? (J-N):");
+                                                        String enqueteInvullen = scanner.nextLine();
+                                                        if (enqueteInvullen.toUpperCase().equals("J")) {
+                                                            enquetes.get(0).toonVragen();
+
+                                                        } else if(enqueteInvullen.toUpperCase().equals("N")) {
+                                                            printGameOpties();
+                                                        }
+
                                                         retroGameInput = true;
                                                         scoreCriteria = true;
                                                     } catch (InputMismatchException e) {
@@ -242,7 +249,28 @@ public class Main {
                     break;
 
                 case "4":
-                    // code block
+
+                    Enquete enquete = new Enquete();
+                    enquete.createVraag();
+
+                    boolean exitEnquete = false;
+                    while (!exitEnquete){
+                        System.out.println("Wil je nog een nieuwe vraag aanmaken? (J-N)");
+                        String maakVraag = scanner.nextLine();
+
+                        if (maakVraag.toUpperCase().equals("J")) {
+                            enquete.createVraag();
+                        } else if (maakVraag.toUpperCase().equals("N")) {
+                            exitEnquete = true;
+                        } else {
+                            System.out.println("Voer J of N in!");
+                        }
+                    }
+                    enquetes.add(enquete);
+                    clearConsole();
+                    printMenu();
+
+                    enquetes.get(0).toonVragen();
                     break;
                 case "5":
                     exit = true;
