@@ -1,4 +1,8 @@
 import java.util.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.List;
 
 public class Main {
 
@@ -169,12 +173,20 @@ public class Main {
 
                                                         System.out.println("Review succesvol toegevoegd.");
                                                         System.out.println("Wil je een enquete invullen? (J/N):");
-                                                        String enqueteInvullen = scanner.nextLine();
-                                                        if (enqueteInvullen.toUpperCase().equals("J")) {
-                                                            enquetes.get(0).toonVragen();
-                                                            printGameOpties();
-                                                        } else if(enqueteInvullen.toUpperCase().equals("N")) {
-                                                            printGameOpties();
+                                                        boolean enqueteValidInput = false;
+                                                        while (!enqueteValidInput) {
+
+                                                            String enqueteInvullen = scanner.nextLine();
+                                                            if (enqueteInvullen.toUpperCase().equals("J")) {
+                                                                enquetes.get(0).toonVragen();
+                                                                enqueteValidInput = true;
+                                                                printGameOpties();
+                                                            } else if(enqueteInvullen.toUpperCase().equals("N")) {
+                                                                enqueteValidInput = true;
+                                                                printGameOpties();
+                                                            } else {
+                                                                System.out.println("Ongeldige invoer. Voer een geldig letter in. (J/N):");
+                                                            }
                                                         }
 
                                                         retroGameInput = true;
@@ -183,6 +195,7 @@ public class Main {
                                                         System.out.println("Ongeldige invoer. Voer een geldig getal in.");
                                                         scanner.nextLine();
                                                     } catch (Exception e) {
+                                                        System.out.println(e);
                                                         System.out.println("Dit is niet een juiste optie.");
                                                     }
 

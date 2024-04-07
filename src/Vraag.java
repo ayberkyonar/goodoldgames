@@ -65,19 +65,19 @@ class MeerkeuzeVraag extends Vraag {
 
             if (input.equals("1")) {
                 createAntwoord(this.keuze1);
-                if (bonusVragen.get(0) != null) {
+                if (!bonusVragen.isEmpty() && bonusVragen.get(0) != null) {
                     bonusVragen.get(0).toonVraag();
                 }
                 exitEnquete = true;
             } else if (input.equals("2")) {
                 createAntwoord(this.keuze2);
-                if (bonusVragen.get(1) != null) {
+                if (!bonusVragen.isEmpty() && bonusVragen.get(1) != null) {
                     bonusVragen.get(1).toonVraag();
                 }
                 exitEnquete = true;
             } else if (input.equals("3")) {
                 createAntwoord(this.keuze3);
-                if (bonusVragen.get(2) != null) {
+                if (!bonusVragen.isEmpty() && bonusVragen.get(2) != null) {
                     bonusVragen.get(2).toonVraag();
                 }
                 exitEnquete = true;
