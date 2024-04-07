@@ -6,10 +6,6 @@ public class Genre {
            this.naam = naam;
     }
 
-    public Genre getGenre () {
-        return this;
-    }
-
     public void toonGenre () {
         System.out.println(this.naam);
     }

@@ -97,8 +97,4 @@ public class Enquete {
         this.vragen.add(vraag);
     }
 
-    public void removeVraag (Vraag vraag) {
-        this.vragen.remove(vraag);
-    }
-
 }

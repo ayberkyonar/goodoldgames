@@ -41,7 +41,7 @@ class MeerkeuzeVraag extends Vraag {
     private String keuze1;
     private String keuze2;
     private String keuze3;
-    ArrayList<Vraag> bonusVragen = new ArrayList<>();
+    private ArrayList<Vraag> bonusVragen = new ArrayList<>(); //misschien public
 
 
     MeerkeuzeVraag (String titel, String keuze1, String keuze2, String keuze3) {

@@ -1,4 +1,3 @@
-import com.sun.security.jgss.GSSUtil;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -13,10 +12,6 @@ public class Game {
 
     public String getNaam() {
         return this.naam;
-    }
-
-    public void setNaam (String naam) {
-        this.naam = naam;
     }
 
     public Game (String naam, double prijs, Genre genre){
@@ -45,7 +40,6 @@ public class Game {
         }
     }
 
-
     public void toonKorting() {
         if (this.korting > 0) {
             System.out.println(this.naam);
@@ -55,7 +49,6 @@ public class Game {
             System.out.printf("Prijs na korting: €%.2f\n", this.prijs - kortingBedrag);
             System.out.println();
         }
-
     }
 
     public void setPrijs(double prijs) {
@@ -87,14 +80,8 @@ public class Game {
         return score / reviews.size();
     }
 
-
     public static void sortGamesByAverageScore(List<Game> games) {
         Collections.sort(games, Comparator.comparing(Game::getScore).reversed());
     }
-    public static void printGameScores(List<Game> games) {
-        sortGamesByAverageScore(games);
-        for (Game game : games) {
-            System.out.println(game.getNaam() + ": " + game.getScore());
-        }
-    }
+
 }
