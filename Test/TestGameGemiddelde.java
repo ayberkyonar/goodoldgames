@@ -7,8 +7,8 @@ public class TestGameGemiddelde {
     public void testGameGemiddelde(){
         //Arrange
         Game gtav = new Game();
-        Review review2 = new Review("leuke game met goede storyline", 7,8,9 );
-        Review review3 = new Review("irritante game met hinderlijke storyline", 3,5,3 );
+        Review review2 = new Review (gtav,"prima",7,8,9 );
+        Review review3 = new Review (gtav,"irritante game met hinderlijke storyline", 3,5,3 );
 
         //Act
         gtav.addReview(review2);

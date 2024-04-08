@@ -7,7 +7,7 @@ public class TestScore {
     public void testScore(){
         //Arrange
         Game minecraft = new Game();
-        Review review2 = new Review("leuke game met goede storyline", 7,8,9 );
+        Review review2 = new Review(minecraft, "leuke game", 8,9, 7 );
 
 
         //Act

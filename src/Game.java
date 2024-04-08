@@ -1,3 +1,6 @@
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.ArrayList;
 
 public class Game {
@@ -6,6 +9,10 @@ public class Game {
     private int korting;
     private Genre genre;
     private ArrayList<Review> reviews = new ArrayList<>();
+
+    public String getNaam() {
+        return this.naam;
+    }
 
     public Game (String naam, double prijs, Genre genre){
         this.naam = naam;
@@ -27,15 +34,23 @@ public class Game {
 
     public void toonGame() {
         System.out.println(this.naam);
-        System.out.printf("€%.2f\n",this.prijs);
+
+        if (this.korting > 0) {
+            double kortingBedrag = this.prijs * (this.korting / 100.0);
+            System.out.printf("€%.2f\n", this.prijs - kortingBedrag);
+        } else {
+            System.out.printf("€%.2f\n",this.prijs);
+        }
     }
 
     public void toonKorting() {
-        System.out.println(this.naam);
-        System.out.println(this.prijs);
-
-        if (this.korting != -1) {
-            System.out.println(this.korting);
+        if (this.korting > 0) {
+            System.out.println(this.naam);
+            System.out.printf("€%.2f\n",this.prijs);
+            System.out.println(this.korting + "%");
+            double kortingBedrag = this.prijs * (this.korting / 100.0);
+            System.out.printf("Prijs na korting: €%.2f\n", this.prijs - kortingBedrag);
+            System.out.println();
         }
     }
 
@@ -43,20 +58,33 @@ public class Game {
         this.prijs = prijs;
     }
 
+    public double getPrijs() {
+        return this.prijs;
+    }
+
     public void addReview (Review review) {
         reviews.add(review);
     }
 
-    public double getScore () {
+    public ArrayList<Review> getReview() {
+        return this.reviews;
+    }
+
+
+    public double getScore() {
+        if (reviews.isEmpty()) {
+            return 0;
+        }
 
         double score = 0;
-        for (int i = 0; i < reviews.size(); i++) {
-            score += reviews.get(i).getGemiddelde();
+        for (Review review : reviews) {
+            score += review.getGemiddelde();
         }
         return score / reviews.size();
+    }
 
+    public static void sortGamesByAverageScore(List<Game> games) {
+        Collections.sort(games, Comparator.comparing(Game::getScore).reversed());
     }
 
 }
-
-
