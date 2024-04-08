@@ -3,6 +3,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestGameGemiddelde {
 
+    // Deze test draagt bij aan het correct tonen van de gemiddelde score die een game heeft behaald
+    // op basis van gemiddelde score van de reviews die een gebruiker geeft aan de desbetreffende game.
+
+
     @Test
     public void testGameGemiddelde(){
         //Arrange
