@@ -172,30 +172,31 @@ public class Main {
                                                         genreGames.get(retroGame).addReview(newReview);
 
                                                         System.out.println("Review succesvol toegevoegd.");
-                                                        System.out.println("Wil je een enquete invullen? (J/N):");
-                                                        boolean enqueteValidInput = false;
-                                                        while (!enqueteValidInput) {
 
-                                                            String enqueteInvullen = scanner.nextLine();
-                                                            if (enqueteInvullen.toUpperCase().equals("J")) {
-                                                                enquetes.get(0).toonVragen();
-                                                                enqueteValidInput = true;
-                                                                printGameOpties();
-                                                            } else if(enqueteInvullen.toUpperCase().equals("N")) {
-                                                                enqueteValidInput = true;
-                                                                printGameOpties();
-                                                            } else {
-                                                                System.out.println("Ongeldige invoer. Voer een geldig letter in. (J/N):");
+
+                                                        if (!enquetes.isEmpty() && enquetes.get(0) != null) {
+                                                            System.out.println("Wil je een enquete invullen? (J/N):");
+                                                            boolean enqueteValidInput = false;
+                                                            while (!enqueteValidInput) {
+
+                                                                String enqueteInvullen = scanner.nextLine();
+                                                                if (enqueteInvullen.toUpperCase().equals("J")) {
+                                                                    enquetes.get(0).toonVragen();
+                                                                    enqueteValidInput = true;
+                                                                } else if(enqueteInvullen.toUpperCase().equals("N")) {
+                                                                    enqueteValidInput = true;
+                                                                } else {
+                                                                    System.out.println("Ongeldige invoer. Voer een geldig letter in. (J/N):");
+                                                                }
                                                             }
                                                         }
-
+                                                        printGameOpties();
                                                         retroGameInput = true;
                                                         scoreCriteria = true;
                                                     } catch (InputMismatchException e) {
                                                         System.out.println("Ongeldige invoer. Voer een geldig getal in.");
                                                         scanner.nextLine();
                                                     } catch (Exception e) {
-                                                        System.out.println(e);
                                                         System.out.println("Dit is niet een juiste optie.");
                                                     }
 
