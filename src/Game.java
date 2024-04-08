@@ -18,6 +18,9 @@ public class Game {
         this.korting = korting;
     }
 
+    public Game() {
+    }
+
     public Genre getGenre() {
         return genre;
     }
