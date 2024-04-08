@@ -90,7 +90,7 @@ public class Main {
                                 for (Game game : genreGames) {
                                     System.out.print(gameCounter + " ");
                                     game.toonGame();
-                                    System.out.printf("%.2f\n", game.getScore());
+                                    System.out.printf("★ %.1f\n", game.getScore());
                                     System.out.println();
                                     gameCounter++;
                                 }

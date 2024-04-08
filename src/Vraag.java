@@ -41,7 +41,7 @@ class MeerkeuzeVraag extends Vraag {
     private String keuze1;
     private String keuze2;
     private String keuze3;
-    private ArrayList<Vraag> bonusVragen = new ArrayList<>(); //misschien public
+    private ArrayList<Vraag> bonusVragen = new ArrayList<>();
 
 
     MeerkeuzeVraag (String titel, String keuze1, String keuze2, String keuze3) {
@@ -91,6 +91,10 @@ class MeerkeuzeVraag extends Vraag {
         System.out.println("Voer de vervolg vraag in:");
         String vraag = scanner.nextLine();
         OpenVraag openVraag = new OpenVraag(vraag);
+
+        while (bonusVragen.size() <= index) {
+            bonusVragen.add(null);
+        }
 
         this.bonusVragen.add(index, openVraag);
     }

@@ -43,7 +43,7 @@ public class Enquete {
                     } else if (vervolgVraagKeuze.toLowerCase().equals("n")) {
                         vervolgInput1 = true;
                     } else {
-                        System.out.println("Voer een geldig invoer in");
+                        System.out.println("Voer iets geldigs in (J/N):");
                     }
                 }
 
@@ -71,7 +71,7 @@ public class Enquete {
                     } else if (vervolgVraagKeuze.toLowerCase().equals("n")) {
                         vervolgInput3 = true;
                     } else {
-                        System.out.println("Voer een geldig invoer in");
+                        System.out.println("Voer een geldig invoer in (J/N): ");
                     }
                 }
 
