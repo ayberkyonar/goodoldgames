@@ -115,7 +115,7 @@ public class Main {
                             for (Game game : games) {
                                 if (game.equals(genreGames.get(retroGame))) {
                                     game.toonGame();
-                                    System.out.println(game.getScore());
+                                    System.out.printf("★ %.1f\n", game.getScore());
                                     printGameOpties();
 
                                     boolean exitGame = false;
